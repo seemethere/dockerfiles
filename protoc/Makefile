@@ -21,3 +21,7 @@ exists:
 .PHONY: release
 release: image
 	docker push $(FULL_DOCKER_IMAGE)
+
+.PHONY: clean
+clean:
+	-docker rmi -f $$(docker images -q $(DOCKER_IMAGE))
