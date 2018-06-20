@@ -24,6 +24,10 @@ RUN make check install
 WORKDIR /src
 RUN rm -rf protobuf
 
+FROM golang:1.10-alpine
+
+RUN apk -U add git
+
 # TODO: Lock this down to specific versions
 # Install gogo, an optimised fork of the Golang generators
 RUN go get github.com/gogo/protobuf/proto \
@@ -32,7 +36,5 @@ RUN go get github.com/gogo/protobuf/proto \
        github.com/gogo/protobuf/protoc-gen-gogofast \
        github.com/gogo/protobuf/protoc-gen-gogofaster \
        github.com/gogo/protobuf/protoc-gen-gogoslick
-
-RUN apt-get purge -y git make autoconf automake libtool unzip && apt-get clean -y
 
 ENTRYPOINT ["protoc"]
