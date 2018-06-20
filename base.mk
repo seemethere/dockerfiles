@@ -1,6 +1,6 @@
 FULL_DOCKER_IMAGE=$(DOCKER_IMAGE):$(TAG)
 
-all: image
+all: build
 
 .PHONY: build
 build:
